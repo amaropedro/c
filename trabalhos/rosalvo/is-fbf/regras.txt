@@ -1,0 +1,12 @@
+----------------------------------------------------------------------
+ Utilize sempre maiusculas (A-Z apenas) para representar PROPOSICOES
+ Utilize: ' para representar NAO ou NEGACAO
+ Utilize a negacao depois da proposicao. (ex: P')
+ Utilize: & para representar E
+ Utilize: | para representar OU
+ Utilize: > para representar EMPLICA EM
+ Utilize: = para representar SE SOMENTE SE
+ Utilize: t para representar TURE
+ Utilize: f para representar FALSE
+----------------------------------------------------------------------
+

@@ -1,0 +1,109 @@
+void ins (LISTA_CIR_DUP_ENC_NC L, int val, int pos)
+{
+    LISTA_CIR_DUP_ENC_NC novo;
+
+    if(pos<1 || pos>L->inf+1)
+    {
+        printf("pos invalida!");
+        return;
+    }
+
+    novo = (NODO*) malloc(sizeof(NODO));
+    if(!novo)
+    {
+        printf("erro na alloc");
+        return;
+    }
+
+    novo->inf = val;
+
+    if(pos <= L->inf/2)
+    {
+        L->inf++;
+
+        for(; pos>1; L = L->prox, pos--);
+
+        novo->prox = L->prox;
+        novo->ant = L;
+        L->prox = novo;
+        novo->prox->ant = novo;
+    }    
+    else
+    {
+        LISTA_CIR_DUP_ENC_NC aux;
+
+        for(aux=L; pos <= L->inf; L = L->ant, pos++);
+
+        novo->prox = aux;
+        novo->ant = aux->ant;
+        aux->ant->prox = novo;
+        aux->ant = novo;
+
+        L->inf++;
+    }
+
+}
+
+----------------
+
+void ins (LISTA_CIR_DUP_ENC_NC L, int val, int pos)
+{
+    LISTA_CIR_DUP_ENC_NC novo, aux;
+
+    if(pos<1 || pos>L->inf+1)
+    {
+        printf("pos invalida!");
+        return;
+    }
+
+    novo = (NODO*) malloc(sizeof(NODO));
+    if(!novo)
+    {
+        printf("erro na alloc");
+        return;
+    }
+
+    novo->inf = val;
+
+    if(pos <= (L->inf)/2)
+    {
+        for(aux=L; pos>1; aux = aux->prox, pos--);
+
+        novo->prox = aux->prox;
+        novo->ant = aux;
+        aux->prox = novo;
+        novo->prox->ant = novo;
+    }    
+    else
+    {
+        for(aux=L; pos <= L->inf; aux = aux->ant, pos++);
+
+        novo->prox = aux;
+        novo->ant = aux->ant;
+        aux->ant->prox = novo;
+        aux->ant = novo;
+    }
+
+    L->inf++;
+}
+--------------------
+
+int pertence(LISTA_CIR_DUP_ENC l, inf v, int etype)
+{
+   if (!l)
+      return 0;
+   else
+   {
+      TAD_LISTA aux=l;
+      do
+      {
+         if (aux->etype==etype && 
+       ((INTGR==etype && aux->element.ival==v.ival) || 
+         (FLT==etype && aux->element.fval==v.fval) || 
+         (STRING==etype && !strcmp(aux->element.sval,v.sval))))
+            return 1;
+         aux=aux->prox;
+      }while(aux!=l);
+      return 0;
+   }
+}
